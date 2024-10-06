@@ -1,7 +1,9 @@
 // ----------- ATTACK MONSTER ----------
 
 // Inside src/instructions/attack_monster.rs
-use crate::{error::RpgError, helpers::spend_action_points, Monster, Player, ATTACK_MONSTER_ACTION_POINTS};
+use crate::{
+    error::RpgError, helpers::spend_action_points, Monster, Player, ATTACK_MONSTER_ACTION_POINTS,
+};
 use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
@@ -46,6 +48,7 @@ pub fn run_attack_monster(ctx: Context<AttackMonster>) -> Result<()> {
 
     // Spend 1 lamport to attack monster
     let action_point_to_spend = ATTACK_MONSTER_ACTION_POINTS;
+    msg!("action_point_to_spend = {}", action_point_to_spend);
 
     spend_action_points(
         action_point_to_spend,
